@@ -12,10 +12,15 @@ const BASE_URL = 'https://image.tmdb.org/t/p/w500/'
 const originalImgUrl = 'https://image.tmdb.org/t/p/original'
 const MovieCard = ({ data, type }: any) => {
   const router = useRouter()
-  
-
+ let  route = router.route
+if(route==='/')
+{
+  route='/movie'
+} 
+console.log(route)
   const overview = data.overview ? data.overview.slice(0, 300) + "..." : "no overwiev present"
-   const mediaType = data.media_type || 'tv'
+  const mediaType = data.media_type ==='movie' ?'/movie':'/tv'
+   
   const [open, setOpen] = useState(false)
   function handleToggle() {
     setOpen(open => !open)
@@ -41,7 +46,7 @@ const MovieCard = ({ data, type }: any) => {
         <p>
           vote : {data.vote_average}
         </p>
-        <Link href={mediaType==="movie"?`/movie/${data.id}`:`/tv/${data.id}`}><Button variant={"text"}>More</Button></Link>
+        <Link href={route==='/search'?`/${mediaType}/${data.id}`:`${route}/${data.id}`}><Button variant={"text"}>More</Button></Link>
         </div>
     </CardContent>
   </Card>

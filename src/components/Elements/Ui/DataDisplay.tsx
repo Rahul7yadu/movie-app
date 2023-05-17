@@ -25,11 +25,13 @@ type Data = {
     video:boolean;
     vote_average:number;
     vote_count:number;
+    name:string;
 }
 
 export const DataDisplay = ({displayData}: {displayData:Data}) => {
+    console.log(displayData)
     return (
-        <div><Typography textAlign={'center'} variant='h1'> Title : {displayData.original_title}</Typography>
+        <div><Typography  >  {displayData.original_title || displayData.name}</Typography>
         <Typography variant="h3">Budget : {displayData.budget}</Typography>
         </div>
     )
