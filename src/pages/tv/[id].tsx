@@ -26,12 +26,6 @@ useEffect(() => {
   
 }, [])
 
-  const movieDataArray = []
-  for (let [key,value] of Object.entries(data)){
-    const myKey = key
-    movieDataArray.push({[key]:value})
-  }
-  console.log(movieDataArray)
   if(loading) return <Loading/>
   return (
 
@@ -50,15 +44,3 @@ useEffect(() => {
 
 export default SingleMovie
 
-export const getServerSideProps =async (context:any)=>{
-const id = context.query.id
-const api_key = process.env.NEXT_PUBLIC_API_KEY
-  const callApi = async () => {
-    const result = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=en-US`)
-    const data = await result.json()
-    return data
-  }
-  const data =await callApi() 
-  return {
-    props:{data}} 
-}
