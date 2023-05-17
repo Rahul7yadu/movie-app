@@ -1,4 +1,4 @@
-import { createSlice, configureStore, createReducer } from "@reduxjs/toolkit";
+import { createSlice, configureStore, createReducer, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { pokemonApi } from "./services/DataApi";
 import { Data, storeData } from "./Types";
 const dataReducers = createReducer({}, (builder) => {
@@ -30,8 +30,9 @@ const { actions, reducer } = dataSlice
 export const store :any= configureStore({
     reducer: {
         data:reducer,
-
+        [pokemonApi.reducerPath]:pokemonApi.reducer,
     },
+    middleware:(getDefaultMiddleware)=>getDefaultMiddleware()
 
 })
 

@@ -1,10 +1,10 @@
-import Image from "next/image"
+
 import { useRouter } from "next/router"
 import {useState,useEffect} from 'react'
 import { Card,CardContent,CardMedia, Paper } from "@mui/material"
 import { Loading } from "@/Holders/Loading"
 import { DataDisplay } from "@/components/Elements/Ui/DataDisplay"
-const singleMovie = () => {
+const SingleMovie = () => {
  const router = useRouter()
  const id = router.query.id
 const [data,setData] = useState(Object)
@@ -59,7 +59,7 @@ useEffect(() => {
   )
 }
 
-export default singleMovie
+export default SingleMovie
 
 export const getServerSideProps =async (context:any)=>{
 const id = context.query.id
