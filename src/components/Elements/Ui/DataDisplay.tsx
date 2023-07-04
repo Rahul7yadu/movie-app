@@ -42,7 +42,7 @@ export const DataDisplay = ({ displayData:{status,original_title,name,overview,b
             <Typography>Original Title : {original_language}</Typography>
             {release_date && <Typography>Release Date: {release_date}</Typography>}
             {runtime&&<Typography>Runtime:{runtime}</Typography>}
-           <div> Languages {spoken_languages&&spoken_languages.map((lang)=><Typography display={'flex'}>{ lang.english_name}</Typography>)}</div>
+           <div> Languages {spoken_languages&&spoken_languages.map((lang,idx)=><Typography display={'flex'} key={idx}>{ lang.english_name}</Typography>)}</div>
             {adult&&'Adult'}
 
             {/* <Cast/> */}
