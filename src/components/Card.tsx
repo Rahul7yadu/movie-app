@@ -46,8 +46,12 @@ console.log(route)
         <p>
           vote : {data.vote_average}
         </p>
-        <Link href={route==='/search'?`/${mediaType}/${data.id}`:`${route}/${data.id}` }><Button variant={"text"}>More</Button></Link>
+        <div className="flex justify-around">
+        <Link href={route==='/search'?`/${mediaType}/${data.id}`:`${route}/${data.id}` }>
+          <Button variant={"text"}>More</Button>
+        </Link>
         <Button onClick={handleClose}>close</Button>
+        </div>
         </div>
     </CardContent>
   </Card>

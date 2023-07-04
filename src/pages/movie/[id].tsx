@@ -2,7 +2,7 @@
 import { useRouter } from "next/router"
 
 import {useState,useEffect} from 'react'
-import {  Paper,Card, CardContent, CardMedia } from "@mui/material"
+import {  Button, Paper} from "@mui/material"
 import Loading  from "@/Holders/Loading"
 import { DataDisplay } from "@/components/Elements/Ui/DataDisplay"
 const SingleMovie = () => {
@@ -32,9 +32,13 @@ useEffect(() => {
   if(loading) return <Loading/>
   return (
     
-    <Paper sx={{border:'2px solid black',display:'flex',alignItems:'center',flexDirection:'column',padding:'10px',height:'100vh'}} >
-      <img src={data.backdrop_path?ImageUrl+data.backdrop_path:'/spinner.jpg'} className="h-full w-full"/>
+    <Paper sx={{border:'2px solid black',display:'flex',alignItems:'center',flexDirection:'column',padding:'30px'}} >
+      <div className="flex items-center justify-center flex-col">
+
+      <img src={data.backdrop_path?ImageUrl+data.backdrop_path:'/spinner.jpg'} className="h-full w-full" loading="lazy" alt='./spinner.gif'/>
      <DataDisplay displayData={data} />
+      </div>
+      <Button onClick={()=>history.back()}>back</Button>
     </Paper>
     
       
