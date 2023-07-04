@@ -1,10 +1,11 @@
-import {useState,useEffect} from 'react'
+import {useEffect} from 'react'
 import { useRouter } from 'next/router';
-
-import {Data,storeData} from '@/Types'
+import {storeData} from '@/Types'
 import MovieSection from '@/Holders/MovieSection'
 import { useDispatch, useSelector } from 'react-redux';
 import {actions} from './../store'
+import Loading from '@/Holders/Loading';
+import Layout from '@/components/layout/Layout';
 export default function Home() {
  const router = useRouter()
 const page = router.query.page || '1'
@@ -28,16 +29,16 @@ useEffect(()=>{
     
 },[page,category])
 if(loading){
-  return <div className='w-full h-screen flex flex-col justify-center items-center text-4xl  text-white text-bold'>
-   ...Loading 
-  </div>
+  return<Loading/>
 }
   return (
     <>
     
-
     
+
       <MovieSection data={data}/>
+ 
+   
     </>
   )
 }

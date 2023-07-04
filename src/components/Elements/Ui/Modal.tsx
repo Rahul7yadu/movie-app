@@ -1,3 +1,4 @@
+
 import Modal from '@mui/material/Modal'
 interface Props{
     children:any
@@ -7,9 +8,13 @@ interface Props{
 
 const CustomModal = ({children,open,onClose}:Props) => {
   return (
-    <Modal open={open}
+    <Modal open={open} 
     onClose={onClose}  style={{display:'flex',alignItems:'center',justifyContent:'center'}} >
+      <div>
+
         {children}
+        
+      </div>
     </Modal>
   )
 }

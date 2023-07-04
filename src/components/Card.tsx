@@ -1,7 +1,7 @@
 import { useState } from "react";
 import  Link  from "next/link";
 import { useRouter } from "next/router";
-import { Modal, Card, CardContent, CardMedia, Button } from "@mui/material";
+import { Card, CardContent, CardMedia, Button } from "@mui/material";
 import CustomModal from './Elements/Ui/Modal'
 interface props {
   data: {
@@ -30,9 +30,9 @@ console.log(route)
   }
   return (
 <>  
-<CustomModal open={open} onClose={handleClose}>
-  <Card  className="sm:w-96 w-80 ">
-    <CardMedia image={data.poster_path?originalImgUrl+data.poster_path:'/default.jfif'} title='movie' sx={{minHeight:400}} />
+<CustomModal open={open} onClose={handleClose} >
+  <Card  className=" sm:max-w-2xl max-w-xs " >
+    <CardMedia image={data.poster_path?originalImgUrl+data.poster_path:'/spinner.jpg'} title='movie' sx={{minHeight:400}} />
     <CardContent>
         <div>
           <h1 className="text-base text-red-400 shrink-0">{data.title?data.title:data.name}</h1>
@@ -41,18 +41,19 @@ console.log(route)
         <div className="text-xl text-red-500 shrink-0">
 
         <p>
-          release data : {data.release_date}
+          release date : {data.release_date}
         </p>
         <p>
           vote : {data.vote_average}
         </p>
-        <Link href={route==='/search'?`/${mediaType}/${data.id}`:`${route}/${data.id}`}><Button variant={"text"}>More</Button></Link>
+        <Link href={route==='/search'?`/${mediaType}/${data.id}`:`${route}/${data.id}` }><Button variant={"text"}>More</Button></Link>
+        <Button onClick={handleClose}>close</Button>
         </div>
     </CardContent>
   </Card>
 </CustomModal>
     <Card onClick={handleToggle}>
-      <CardMedia image={data.poster_path?BASE_URL + data.poster_path:'/default.jfif'} title='movie' sx={{ height: 300 }}>
+      <CardMedia image={data.poster_path?BASE_URL + data.poster_path:'/notfound.jpg'} title='movie' sx={{ height: 300 }}>
 
       </CardMedia>
 
@@ -61,6 +62,7 @@ console.log(route)
           <h1 className="text-base text-red-400 shrink-0">{data.title?data.title:data.name}</h1>
         </div>
       </CardContent>
+      
     </Card>
       </>
   )

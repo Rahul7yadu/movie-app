@@ -5,7 +5,9 @@ import { actions } from '@/store'
 import { storeData } from '@/Types'
 import MovieSection from '@/Holders/MovieSection'
 import { useRouter } from 'next/router'
-
+import  Loading  from '@/Holders/Loading'
+import Layout from '@/components/layout/Layout'
+import { Paper, Typography } from '@mui/material'
 export default function Search() {
 
  const router = useRouter()
@@ -30,36 +32,21 @@ useEffect(()=>{
   
 },[page,search])
 if(loading){
-  return <h1>
-   ...Loading 
-  </h1>
+  return <>
+  <Loading/>
+  </>
 }
   return (
     <>
-    <div>
-      Total Pages : {data.total_pages}
-     Total Results {data.total_results}
-    </div>
+    
+
+    <Paper sx={{display:'flex',justifyContent:'center',alignContent:'space-between'}}>
+      <Typography>Total Pages : {data.total_pages}</Typography>
+     <Typography>Total Results {data.total_results}</Typography>
+    </Paper>
       <MovieSection data={data}/>
+   
     </>
   )
 }
 
-// export async function getServerSideProps(context:any) {
-//   const api_key = process.env.NEXT_PUBLIC_API_KEY;
-//   console.log(context.query)
-//   const page = context.query.page?context.query.page:1
-//   const callApi= async ()=>{
-    
-//   const BASE_URL=`https://api.themoviedb.org/3/search/multi?query=${context.query.search}&api_key=${api_key}&language=en-US&page=${page}`
-
-//     const result = await fetch(BASE_URL)
-//     const data = await result.json()
-//     return data
-//   }
-//   const data = await callApi()
-//   // const data = "hellow ji"
-//   return {
-//     props: {data}, // will be passed to the page component as props
-//   }
-// }

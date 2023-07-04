@@ -1,6 +1,13 @@
 import { Paper } from "@mui/material"
-export const Loading = () => {
+const Loading = () => {
   return (
-    <Paper className="h-screen animate-spin text-5xl">loading...</Paper>
+    <div className="flex items-center justify-center h-screen w-full">
+
+    <Paper className="h-1/2 text-xl w-1/4 border-sky-200 bg-slate-400 flex justify-center items-center">
+      <img src='/spinner.gif'></img>
+      </Paper>
+    </div>
   )
 }
+
+export default Loading

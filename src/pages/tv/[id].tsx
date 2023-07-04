@@ -1,8 +1,8 @@
-import Image from "next/image"
+
 import { useRouter } from "next/router"
 import {useState,useEffect} from 'react'
 import { Card,CardContent,CardMedia, Paper } from "@mui/material"
-import { Loading } from "@/Holders/Loading"
+import Loading  from "@/Holders/Loading"
 import { DataDisplay } from "@/components/Elements/Ui/DataDisplay"
 const SingleMovie = () => {
  const router = useRouter()
@@ -28,16 +28,18 @@ useEffect(() => {
 
   if(loading) return <Loading/>
   return (
+   
 
     <Paper sx={{height:'100vh',border:'2px solid red',display:'flex',alignItems:'center',flexDirection:'column'}} >
       <Card className="w-full h-full flex items-center flex-col">
-        <CardMedia image={data.poster_path?ImageUrl+data.backdrop_path:'/default.jfif'} className="h-3/4 sm:w-3/4"/>
+        <CardMedia image={data.backdrop_path?ImageUrl+data.backdrop_path:'/notfound.jpg'} className="h-full w-full"/>
         <CardContent>
 
        <DataDisplay displayData={data} />
         </CardContent>
       </Card>
       </Paper>
+     
     
   )
 }

@@ -3,9 +3,9 @@ import NavLinks from '@/components/Elements/Headers/NavLinks'
 import Hamburger from '@/components/Elements/Headers/Hamburger'
 import SearchBox from "@/components/Elements/Headers/SearchBox"
 import Sidebar from './Sidebar'
-import Login from '../components/UI/forms/Login'
-import CustomModal from '../components/Elements/Ui/Modal'
-import { Paper, Switch, Button } from '@mui/material'
+
+
+import { Paper, Switch, Button ,} from '@mui/material'
 import { DataContext } from '@/context/context'
 import { LightModeRounded,  DarkModeRounded, } from '@mui/icons-material/'
 interface props {
@@ -22,7 +22,7 @@ const Header = ({ mode, setMode }: props) => {
   return (
     <Paper sx={{ borderBottom: '5px solid red' }} className='flex  flex-col sm:flex-row justify-between items-center'>
 
-      {ShowHamburger && <Sidebar open={ShowHamburger} onClose={() => setShowHamburger(false)} />}
+      {ShowHamburger && <Sidebar isOpen={ShowHamburger} onClose={() => setShowHamburger(false)} />}
       <Hamburger open={ShowHamburger} onClick={() => setShowHamburger(prev => !prev)}  />
       
         <NavLinks />
@@ -30,16 +30,8 @@ const Header = ({ mode, setMode }: props) => {
      
       <div className='flex justify-around'>
 
-        <div >
-          <Button onClick={Modal}>login</Button>
-          <CustomModal open={open} onClose={Modal}>
-            <>
-            <Login />
-            </>
-          </CustomModal>
-          <Button >register</Button>
-        </div>
-        <Switch checked={mode} onChange={setMode} icon={<LightModeRounded />} checkedIcon={<DarkModeRounded />} />
+        
+        <Switch checked={mode} onChange={setMode} icon={<LightModeRounded />} checkedIcon={<DarkModeRounded />} className='p-2'/>
       </div>
 
     </Paper>
