@@ -70,7 +70,6 @@ console.log(route)
         </div>
       </CardContent>
       </CardActionArea>
-      <LinearProgress  value={data.vote_average*10} color='success' title="vote"/>
     </Card>
       </>
   )
