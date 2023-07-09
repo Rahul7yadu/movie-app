@@ -8,8 +8,8 @@ const JumpPage = ({total_pages}:any) => {
   
   return (
     <div className='p-2'>
-        <Input name='pageno' 
-         placeholder={total_pages} onChange={(e)=>setPage(e.target.value)}
+        <Input name='page' 
+         onChange={(e)=>setPage(e.target.value)}
            className='p-4 m-2 rounded-lg text-xl'
            style={{border:'2px solid blue'}}
            />

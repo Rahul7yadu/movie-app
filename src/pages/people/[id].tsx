@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 const url = "https://api.themoviedb.org/3/person/{person_id}/images"
-import {useGetPeopleQuery,useGetPeopleCreditQuery} from './../../services/DataApi'
+import {useGetPeopleQuery} from './../../services/DataApi'
 import { Paper,Card, Typography ,Button ,} from "@mui/material";
 import Loading from "@/Holders/Loading";
 const ImageUrl = 'https://image.tmdb.org/t/p/original'
@@ -38,15 +38,9 @@ const People= () => {
                 </div>
                 
                 
-                <div className='sm:max-w-2xl max-w-xs'>
-                
-                
-              
-               
-                </div>
             </div>
             }
-            {}
+          
             <Button onClick={()=>history.back()} className="w-5">🔙back</Button>
         
     </Paper>

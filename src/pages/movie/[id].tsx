@@ -2,7 +2,7 @@
 import { useRouter } from "next/router"
 import Cast from '@/components/Cast'
 import { useState, useEffect } from 'react'
-import { Button, Paper, Typography, Skeleton } from "@mui/material"
+import { Button, Paper, Typography} from "@mui/material"
 import Loading from "@/Holders/Loading"
 import { DataDisplay } from "@/components/Elements/Ui/DataDisplay"
 const SingleMovie = () => {

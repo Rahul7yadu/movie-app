@@ -21,10 +21,13 @@ export const pokemonApi = createApi({
     }),
     getPeople:builder.query<Person,string>({
       query:(id:string)=>`person/${id}?${apiKey}`
+    }),
+    getPeopleCredit:builder.query({
+      query:(id:string)=>`/person/${id}/movie_credits`
     })
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMovieQuery,useGetTvQuery ,useGetMovieByPageQuery,useGetCastQuery,useGetPeopleQuery} = pokemonApi
+export const { useGetMovieQuery,useGetTvQuery ,useGetMovieByPageQuery,useGetCastQuery,useGetPeopleQuery,useGetPeopleCreditQuery} = pokemonApi
