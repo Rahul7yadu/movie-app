@@ -11,10 +11,7 @@ const People= () => {
     const id= router.query.id?.toString()|| '1'
 
         const {data,isLoading} = useGetPeopleQuery(id)
-        const getMoviesById = (id:string)=>{
-          const {data:movie,isLoading:movieLoading} = useGetPeopleCreditQuery(id)
-
-        }
+       
         if(isLoading) return <Loading/>
   return (
     <Paper sx={{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',border:'2px solid red',width:'100vw'}}>
@@ -49,7 +46,6 @@ const People= () => {
                 </div>
             </div>
             }
-            <Button onClick = {()=>data?.id&&getMoviesById(data?.id.toString())}>movies of {data?.name}</Button>
             {}
             <Button onClick={()=>history.back()} className="w-5">🔙back</Button>
         
