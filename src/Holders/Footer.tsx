@@ -13,7 +13,7 @@ const Footer = () => {
 
         {/* {page} of {total_pages} */}
         <PrevNext/>
-        <JumpPage total_pages={total_pages}/>
+        <JumpPage />
       </Stack>
     </Paper>
   )
