@@ -11,7 +11,9 @@ const People= () => {
     const id= router.query.id?.toString()|| '1'
 
         const {data,isLoading} = useGetPeopleQuery(id)
-       
+       const setRead = ()=>{
+        useRead(prev=>!prev)
+       }
         if(isLoading) return <Loading/>
   return (
     <Paper sx={{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',border:'2px solid red',width:'100vw'}}>
@@ -25,7 +27,7 @@ const People= () => {
                   <Typography sx={{fontSize:'2rem'}}>{data.name}</Typography>
                   <Typography sx={{fontSize:'1rem'}}>
                     {!read?data.biography.slice(0,300)+'...':data.biography}
-                    <Button onClick={()=>useRead(read=>!read)} className="text-red-500">{!read?'read more':'X'}</Button>
+                    <Button onClick={()=>setRead()} className="text-red-500">{!read?'read more':'X'}</Button>
                   </Typography>
                     
                 <Typography>known for :  {data.known_for_department}</Typography>
