@@ -19,7 +19,7 @@ export default function App({ Component, pageProps, ...appProps }: AppProps) {
   })
   const router = useRouter()
   console.log(router.asPath)
-  if(router.asPath.includes('/movie/')||router.asPath.includes('/tv/')){
+  if(router.asPath.includes('/movie/')||router.asPath.includes('/tv/')||router.asPath.includes('/people/')){
     return <Provider store = {store}>
       <ThemeProvider theme={theme}>
       <Component {...pageProps}/>

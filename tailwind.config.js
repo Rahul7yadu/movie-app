@@ -13,7 +13,8 @@ module.exports = {
       },
       colors:{
         primary:'red'
-      }
+      },
+    
     },
     
   },

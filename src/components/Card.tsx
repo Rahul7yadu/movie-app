@@ -1,7 +1,7 @@
 import { useState } from "react";
 import  Link  from "next/link";
 import { useRouter } from "next/router";
-import { Card, CardContent, CardMedia, Button } from "@mui/material";
+import { Card, CardContent, CardMedia, Button,CardActionArea,CircularProgress, LinearProgress, } from "@mui/material";
 import CustomModal from './Elements/Ui/Modal'
 interface props {
   data: {
@@ -28,6 +28,7 @@ console.log(route)
   function handleClose() {
     setOpen(false)
   }
+  console.log(data)
   return (
 <>  
 <CustomModal open={open} onClose={handleClose} >
@@ -56,8 +57,10 @@ console.log(route)
     </CardContent>
   </Card>
 </CustomModal>
-    <Card onClick={handleToggle}>
-      <CardMedia image={data.poster_path?BASE_URL + data.poster_path:'/notfound.jpg'} title='movie' sx={{ height: 300 }}>
+    <Card onClick={handleToggle} className="cursor-pointer">
+      <CardActionArea>
+
+      <CardMedia image={data.poster_path?BASE_URL + data.poster_path:'/notfound.jpg'} title='movie' sx={{ height: 250,minWidth:250 }}>
 
       </CardMedia>
 
@@ -66,7 +69,8 @@ console.log(route)
           <h1 className="text-base text-red-400 shrink-0">{data.title?data.title:data.name}</h1>
         </div>
       </CardContent>
-      
+      </CardActionArea>
+      <LinearProgress  value={data.vote_average*10} color='success' title="vote"/>
     </Card>
       </>
   )

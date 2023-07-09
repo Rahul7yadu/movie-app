@@ -1,8 +1,8 @@
 import { createSlice, configureStore, createReducer, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { pokemonApi } from "./services/DataApi";
+import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { Data, storeData } from "./Types";
-const dataReducers = createReducer({}, (builder) => {
-})
+
 const initialState = {
     loading:false,
     data:{
@@ -32,8 +32,8 @@ export const store :any= configureStore({
         data:reducer,
         [pokemonApi.reducerPath]:pokemonApi.reducer,
     },
-    middleware:(getDefaultMiddleware)=>getDefaultMiddleware()
+    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(pokemonApi.middleware)
 
 })
-
+setupListeners(store.dispatch);
 export {actions}
