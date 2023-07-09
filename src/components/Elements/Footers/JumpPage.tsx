@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
 import {Input,Button} from '@mui/material'
-import { useRef ,useState} from 'react'
-const JumpPage = ({total_pages}:any) => {
-  const inputRef = useRef()
+import { useState} from 'react'
+const JumpPage = () => {
+
   const [page,setPage]=useState('')
   
   return (

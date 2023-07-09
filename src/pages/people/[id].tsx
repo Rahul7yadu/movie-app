@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 const url = "https://api.themoviedb.org/3/person/{person_id}/images"
 import {useGetPeopleQuery} from './../../services/DataApi'
-import { Paper,Card, Typography ,Button ,} from "@mui/material";
+import { Paper, Typography ,Button ,} from "@mui/material";
 import Loading from "@/Holders/Loading";
 const ImageUrl = 'https://image.tmdb.org/t/p/original'
 const People= () => {
