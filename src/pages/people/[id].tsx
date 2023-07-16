@@ -1,48 +1,77 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Link from 'next/link'
 const url = "https://api.themoviedb.org/3/person/{person_id}/images"
-import {useGetPeopleQuery} from './../../services/DataApi'
-import { Paper, Typography ,Button ,} from "@mui/material";
+import { useGetPeopleQuery, useGetPeopleCreditQuery } from './../../services/DataApi'
+import { Paper, Typography, Button, Card, CardMedia } from "@mui/material";
 import Loading from "@/Holders/Loading";
-const ImageUrl = 'https://image.tmdb.org/t/p/original'
-const People= () => {
-    const router = useRouter()
-    const [read,setRead] = useState(false)
-    const id= router.query.id?.toString()|| '1'
+const ImageUrl = 'https://image.tmdb.org/t/p/w500'
+const People = () => {
+  const router = useRouter()
+  const id = router.query.id?.toString() || '1'
 
-        const {data,isLoading} = useGetPeopleQuery(id)
-       
-        if(isLoading) return <Loading/>
+  const { data, isLoading } = useGetPeopleQuery(id)
+  const { data: creditData, isLoading: creditLoading } = useGetPeopleCreditQuery(id)
+
+  if (isLoading) return <Loading />
   return (
-    <Paper sx={{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',border:'2px solid red',width:'100vw'}}>
-        
-            {data&&
-            <div className='w-full h-full flex items-start flex-col  border-2  sm:p-20 p-5'>
-                <div className="flex sm:flex-row flex-col justify-evenly border-2  w-full">
-                  <img src={ImageUrl+data.profile_path} className="sm:h-[500px] w-auto"></img>
+    <Paper sx={{ border: '2px solid red', display: 'flex', alignItems: 'center', flexDirection: 'column', padding: '5px', minHeight: '100vh' }}>
 
-                  <div className="border-2  max-w-xl">
-                  <Typography sx={{fontSize:'2rem'}}>{data.name}</Typography>
-                  <Typography sx={{fontSize:'1rem'}}>
-                    {!read?data.biography.slice(0,300)+'...':data.biography}
-                    <Button onClick={()=>setRead(prev=>!prev)} className="text-red-500">{!read?'read more':'X'}</Button>
-                  </Typography>
-                    
-                <Typography>known for :  {data.known_for_department}</Typography>
-               <Typography>Birth Date :   {data.birthday}</Typography> 
-                <Typography>place of birth :  {data.place_of_birth} ,
-                
-                </Typography>
-                  </div>
+      {data &&
+        <div className='flex items-center justify-center flex-col'>
+          <div className="flex justify-between lg:flex-row flex-col  ">
+            <div className='flex sm:flex-col'>
 
-                </div>
-                
-                
+            <img src={ImageUrl + data.profile_path} className="h-96 w-96"></img>
+            <Typography>known for :  {data.known_for_department}</Typography>
+              <Typography>Birth Date :   {data.birthday}</Typography>
+              Gender : {data.gender===1?'Female':'Male'}
+
+              <Typography className='max-w-fit'>place of birth :  {data.place_of_birth} </Typography>
+              {data.also_known_as}
             </div>
-            }
-          
-            <Button onClick={()=>history.back()} className="w-5">🔙back</Button>
-        
+
+            <div className=" max-w-2xl">
+              <Typography sx={{ fontSize: '2rem' }} className='text-red-500'>{data.name}</Typography>
+              <Typography sx={{ fontSize: '1rem' }}>
+                {data.biography?data.biography:'no biography'}
+              </Typography>
+
+              
+            </div>
+              
+          </div>
+
+
+        </div>
+      }
+        <Typography sx={{fontSize:'2rem'}}>Movies</Typography>
+      <div className='flex justify-start max-w-full overflow-x-scroll example'>
+        {!isLoading && creditData && creditData.cast.map((movie) => {
+          return (<div >
+            <Link href={`/movie/${movie.id}`}>
+              <div className="max-w-xs m-4">
+                {movie && <Card sx={{ maxHeight: '300px', width: '200px', borderRadius: '5%' }} >
+                  <CardMedia>
+                    <img src={movie.backdrop_path ? ImageUrl + movie.backdrop_path : '/notfound.jpg'} className='h-full w-full' />
+                  </CardMedia>
+                  <p>
+                    {movie.title}
+                  </p>
+                  {movie.character}
+
+                </Card>}
+
+
+              </div>
+            </Link>
+          </div>)
+        })}
+      </div>
+
+
+      <Button onClick={() => history.back()} className="w-5">🔙back</Button>
+
     </Paper>
   )
 }
