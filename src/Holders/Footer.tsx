@@ -11,7 +11,7 @@ const Footer = () => {
     <Paper sx={{display:'flex',justifyContent:'space-around',borderTop:'red 2px solid',paddingTop:'10px'}}>
       <Stack spacing={2}>
 
-        {/* {page} of {total_pages} */}
+        {page} of {total_pages}
         <PrevNext/>
         <JumpPage />
       </Stack>

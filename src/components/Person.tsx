@@ -1,5 +1,5 @@
 import { cast } from "@/Types"
-import { Card,CardContent,CardMedia } from "@mui/material"
+import { Card,CardMedia } from "@mui/material"
 import Link from "next/link"
 const url = "https://api.themoviedb.org/3/person/{person_id}/images"
 const newUrl = 'https://image.tmdb.org/t/p/w500/'
@@ -18,7 +18,8 @@ const Person = ({person}:{person:cast}) => {
                 <p>
                     {person.name}
                     </p>
-                {person.known_for_department}
+                {person.character}
+
     </div>
     </Link>
 

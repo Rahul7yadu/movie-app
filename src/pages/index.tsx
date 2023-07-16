@@ -1,44 +1,34 @@
-import {useEffect} from 'react'
 import { useRouter } from 'next/router';
-import {storeData} from '@/Types'
 import MovieSection from '@/Holders/MovieSection'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {actions} from './../store'
 import Loading from '@/Holders/Loading';
-import Layout from '@/components/layout/Layout';
+import { useGetMoviesQuery } from '@/services/DataApi';
+
 export default function Home() {
- const router = useRouter()
-const page = router.query.page || '1'
-const category = router.query.category || 'now_playing'
-const apiKey = process.env.NEXT_PUBLIC_API_KEY
-const baseUrl = 'https://api.themoviedb.org/3/tv/${ask}?api_key=${api_key}&language=en-US&page=${page}'
+const router = useRouter()
+const page = router.query.page?.toString() || '1'
+const category = router.query.category?.toString() || 'now_playing'
+
 const dispatch = useDispatch()
-const {loading,data} = useSelector((store:storeData)=>store.data)
-async function  fetchData(){
-       const response = await fetch(`https://api.themoviedb.org/3/movie/${category}?api_key=${apiKey}&language=en-US&page=${page}`)
-       const data = await response.json()
-       return data
+
+
+
+const {data:rtkData,isLoading} = useGetMoviesQuery({category,page})
+if(!isLoading){
+
+  dispatch(actions.getData(rtkData))
 }
-useEffect(()=>{
-  dispatch(actions.setLoading(true))
-  fetchData().then(data=>{
-    dispatch(actions.getData(data))
-    dispatch(actions.setLoading(false))
-  })
-    
-    
-},[page,category])
-if(loading){
+
+
+
+
+if(isLoading){
   return<Loading/>
 }
   return (
     <>
-    
-    
-
-      <MovieSection data={data}/>
- 
-   
+      <MovieSection data={rtkData}/>
     </>
   )
 }

@@ -100,11 +100,10 @@ export type castResponse = {
     job: string;
   };
 
-  export type MovieWithCast = Movie & {
-    character: string;
-    credit_id: string;
-    order: number;
-  };
+  export type MovieWithCast = {
+    cast:Movie[],
+    crew:Crew[]
+  }
 
   export type Person = {
     adult: boolean;
@@ -122,3 +121,6 @@ export type castResponse = {
     popularity: number;
     profile_path: string | null;
   };
+
+
+ 

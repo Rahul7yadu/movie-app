@@ -7,11 +7,11 @@ export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
   baseQuery: fetchBaseQuery({ baseUrl: `https://api.themoviedb.org/3/` }),
   endpoints: (builder) => ({
-    getMovie: builder.query({
-      query: (name:'popular'|'now_playing'|'upcomming'|'top_rated') => `movie/${name}?${apiKey}page=1`,
+    getMovies: builder.query({
+      query: ({category,page}:{category:'popular'|'now_playing'|'upcomming'|'top_rated'|string,page:string}) => `movie/${category||'popular'}?${apiKey}&page=${page||'1'}`,
     }),
-    getMovieByPage:builder.query({
-      query:(page:string)=>`movie/now_playing?${apiKey}page=${page}`
+    getMovieById:builder.query({
+      query:(id:string)=>`movie/${id}?${apiKey}`
     }),
     getTv:builder.query({
       query:(name)=>`tv/now_playing?${apiKey}`
@@ -22,12 +22,13 @@ export const pokemonApi = createApi({
     getPeople:builder.query<Person,string>({
       query:(id:string)=>`person/${id}?${apiKey}`
     }),
-    getPeopleCredit:builder.query({
-      query:(id:string)=>`/person/${id}/movie_credits`
+    getPeopleCredit:builder.query<MovieWithCast,string>({
+      query:(id:string)=>`/person/${id}/movie_credits?${apiKey}`
     })
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMovieQuery,useGetTvQuery ,useGetMovieByPageQuery,useGetCastQuery,useGetPeopleQuery,useGetPeopleCreditQuery} = pokemonApi
+export const { useGetMoviesQuery,useGetTvQuery ,useGetMovieByIdQuery,useGetCastQuery,useGetPeopleQuery,useGetPeopleCreditQuery,} = pokemonApi
+

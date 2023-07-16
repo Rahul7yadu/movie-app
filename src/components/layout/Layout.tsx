@@ -12,10 +12,14 @@ const Layout = ({mode,setMode,children}:{mode:boolean,setMode:()=>void,children:
     <>
     
       <Context>
+        <div className='flex flex-col  justify-center'>
+
       <Header mode={mode} setMode={setMode}/>
         {children}
       <Footer />
+      </div>
       </Context>
+
     
     </>
   )

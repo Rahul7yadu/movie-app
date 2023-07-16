@@ -1,7 +1,7 @@
 import { useState } from "react";
 import  Link  from "next/link";
 import { useRouter } from "next/router";
-import { Card, CardContent, CardMedia, Button,CardActionArea,CircularProgress, LinearProgress, } from "@mui/material";
+import { Card, CardContent, CardMedia, Button,CardActionArea } from "@mui/material";
 import CustomModal from './Elements/Ui/Modal'
 interface props {
   data: {
@@ -17,7 +17,6 @@ if(route==='/')
 {
   route='/movie'
 } 
-console.log(route)
   const overview = data.overview ? data.overview.slice(0, 300) + "..." : "no overwiev present"
   const mediaType = data.media_type ==='movie' ?'/movie':'/tv'
    
@@ -28,7 +27,6 @@ console.log(route)
   function handleClose() {
     setOpen(false)
   }
-  console.log(data)
   return (
 <>  
 <CustomModal open={open} onClose={handleClose} >
@@ -60,7 +58,7 @@ console.log(route)
     <Card onClick={handleToggle} className="cursor-pointer">
       <CardActionArea>
 
-      <CardMedia image={data.poster_path?BASE_URL + data.poster_path:'/notfound.jpg'} title='movie' sx={{ height: 250,minWidth:250 }}>
+      <CardMedia image={data.poster_path?BASE_URL + data.poster_path:'/notfound.jpg'} title='movie' sx={{ height: 250,width:'auto' }}>
 
       </CardMedia>
 

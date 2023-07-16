@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+
 import Link from 'next/link'
 const url = "https://api.themoviedb.org/3/person/{person_id}/images"
 import { useGetPeopleQuery, useGetPeopleCreditQuery } from './../../services/DataApi'
