@@ -47,8 +47,8 @@ const People = () => {
       }
         <Typography sx={{fontSize:'2rem'}}>Movies</Typography>
       <div className='flex justify-start max-w-full overflow-x-scroll example'>
-        {!isLoading && creditData && creditData.cast.map((movie) => {
-          return (<div >
+        {!isLoading && creditData && creditData.cast.map((movie,id) => {
+          return (<div key={id}>
             <Link href={`/movie/${movie.id}`}>
               <div className="max-w-xs m-4">
                 {movie && <Card sx={{ maxHeight: '300px', width: '200px', borderRadius: '5%' }} >
