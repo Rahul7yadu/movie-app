@@ -17,7 +17,7 @@ export const pokemonApi = createApi({
       query:(name)=>`tv/now_playing?${apiKey}`
     }),
     getCast:builder.query<castResponse,string>({
-      query:(id:string)=>`movie/${id}/credits?${apiKey}`
+      query:(id:string)=>`${id}?${apiKey}`
     }),
     getTvCast:builder.query<castResponse,string>({
       query:(id:string)=>`tv/${id}/credits?${apiKey}`

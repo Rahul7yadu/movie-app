@@ -15,7 +15,7 @@ const People = () => {
 
   if (isLoading) return <Loading />
   return (
-    <Paper sx={{ border: '2px solid red', display: 'flex', alignItems: 'center', flexDirection: 'column', padding: '5px', minHeight: '100vh' }}>
+    <Paper sx={{ border: '2px solid red', display: 'flex', alignItems: 'center', flexDirection: 'column', padding: '5px', minHeight: '100vh' ,width:'100vw'}}>
 
       {data &&
         <div className='flex items-center justify-center flex-col'>
