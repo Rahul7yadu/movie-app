@@ -29,13 +29,10 @@ const SingleMovie = () => {
             <Typography>{data.overview}</Typography>
           <DataDisplay displayData={data} />
           </section>
-
-        </div>
-
-      
+      </div>
       </div>
       <Typography sx={{ textAlign: 'center', fontWeight: 'bold', marginTop: '10px' }}>CAST</Typography>
-      <Cast movieId={id.toString()} />
+      <Cast type="movie" movieId={id.toString()} />
       <Button onClick={() => history.back()}>back</Button>
 
     </Paper>

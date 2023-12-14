@@ -19,6 +19,9 @@ export const pokemonApi = createApi({
     getCast:builder.query<castResponse,string>({
       query:(id:string)=>`movie/${id}/credits?${apiKey}`
     }),
+    getTvCast:builder.query<castResponse,string>({
+      query:(id:string)=>`tv/${id}/credits?${apiKey}`
+    }),
     getPeople:builder.query<Person,string>({
       query:(id:string)=>`person/${id}?${apiKey}`
     }),
@@ -30,5 +33,5 @@ export const pokemonApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMoviesQuery,useGetTvQuery ,useGetMovieByIdQuery,useGetCastQuery,useGetPeopleQuery,useGetPeopleCreditQuery,} = pokemonApi
+export const { useGetMoviesQuery,useGetTvQuery ,useGetMovieByIdQuery,useGetCastQuery,useGetPeopleQuery,useGetPeopleCreditQuery,useGetTvCastQuery} = pokemonApi
 

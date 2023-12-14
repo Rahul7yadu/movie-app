@@ -1,10 +1,11 @@
 import Person from "./Person"
 import { UseQuery } from "@reduxjs/toolkit/dist/query/react/buildHooks"
-import { useGetCastQuery } from "@/services/DataApi"
+import { useGetCastQuery ,useGetTvCastQuery} from "@/services/DataApi"
 import Loading from "@/Holders/Loading"
 const url = 'https://api.themoviedb.org/3/movie/{movie_id}/credits'
-const Cast = ({movieId}:{movieId:string}) => {
-    const {data,isLoading} = useGetCastQuery(movieId)
+const Cast = ({movieId,type}:{movieId:string,type:'movie'|'tv'}) => {
+    
+    const {data,isLoading} = type=='movie'?useGetCastQuery(movieId):useGetTvCastQuery(movieId)
   
     console.log(data)
 if(isLoading)return <Loading/>
